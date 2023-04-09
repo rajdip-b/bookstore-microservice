@@ -1,0 +1,40 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:#http://localhost:8761/eureka/}
+
+server:
+  port: 8002
+
+spring:
+  profiles:
+    active: ${BMS_PROFILE}
+  config:
+    import: configserver:${CONFIG_SERVER_URL:#http://localhost:8888}
+  application:
+    name: cart-service
+  rabbitmq:
+    host: ${rabbitmq.host}
+    port: ${rabbitmq.port}
+    username: ${rabbitmq.username}
+    password: ${rabbitmq.password}
+    cart-inventory:
+      exchange: cart-inventory-exchange
+      routing-key:
+        add-book-to-cart: ci-add-book-to-cart-rk
+        remove-book-from-cart: ci-remove-book-from-cart-rk
+      queue:
+        add-book-to-cart: ci-add-book-to-cart-queue
+        remove-book-from-cart: ci-remove-book-from-cart-queue
+    user-cart:
+      queue:
+        delete-user: delete-user-queue
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"

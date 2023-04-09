@@ -1,0 +1,30 @@
+server:
+  port: 8765
+
+spring:
+  config:
+    import: configserver:${CONFIG_SERVER_URL:#http://localhost:8888}
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+  profiles:
+    active: ${BMS_PROFILE}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:#http://localhost:8761/eureka/}
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"

@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: ${BMS_PROFILE}
+  application:
+    name: user-service
+  config:
+    import: configserver:${CONFIG_SERVER_URL:#http://localhost:8888}
+  data:
+    mongodb:
+      uri: ${mongodb.uri}
+      username: ${mongodb.username}
+      password: ${mongodb.password}
+  rabbitmq:
+    host: ${rabbitmq.host}
+    port: ${rabbitmq.port}
+    username: ${rabbitmq.username}
+    password: ${rabbitmq.password}
+    user-cart:
+      exchange: user-cart-exchange
+      routing-key:
+        delete-user: delete-user-rk
+      queue:
+        delete-user: delete-user-queue
+
+server:
+  port: 8001
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:#http://localhost:8761/eureka/}
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
