@@ -9,10 +9,6 @@ public class SecurityUtil {
         return Long.parseLong(getAuthentication().getUserId());
     }
 
-    public static String getEmail() {
-        return getAuthentication().getEmail();
-    }
-
     private static CustomAuthenticationToken getAuthentication() {
         return (CustomAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
     }
