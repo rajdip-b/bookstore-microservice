@@ -100,10 +100,10 @@ some IDE that has the same environmental variables set in the launch configurati
 5. You can now access the services at the following urls:
     - `Eureka Server` - http://localhost:8761
     - `Config Server` - http://localhost:8888
-    - `API Gateway` - http://localhost:8080
-    - `User Service` - http://localhost:8081
-    - `Cart Service` - http://localhost:8082
-    - `Inventory Service` - http://localhost:8083
+    - `API Gateway` - http://localhost:8765
+    - `User Service` - http://localhost:8001
+    - `Cart Service` - http://localhost:8002
+    - `Inventory Service` - http://localhost:8004
     - `Zipkin` - http://localhost:9411
     - `RabbitMQ` - http://localhost:15672
     - `MySQL` - http://localhost:3306
