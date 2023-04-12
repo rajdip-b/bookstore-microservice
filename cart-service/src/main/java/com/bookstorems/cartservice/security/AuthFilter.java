@@ -13,6 +13,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * This class looks for incoming requests and checks if the request is trying
+ * to access an authorized resource. If it is, then we need to authorize the
+ * request. The authentication is already done by the api-gateway. ALl we need
+ * to do is to retrieve the userId and role from the header and set it in the
+ * SecurityContext.
+ */
 @Component
 public class AuthFilter extends OncePerRequestFilter {
     @Override

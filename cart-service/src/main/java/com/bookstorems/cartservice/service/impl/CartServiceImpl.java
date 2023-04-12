@@ -150,6 +150,7 @@ public class CartServiceImpl implements CartService {
         );
     }
 
+    // Called when addToCart() fails to connect to inventory-service
     private void addToCartFallback(Long bookId, Integer quantity, Exception e) throws Exception {
         log.error("Could not add book to cart. BookId: {}, Quantity: {}", bookId, quantity, e);
         throw new RuntimeException("Internal communication error. Please try again later.");
